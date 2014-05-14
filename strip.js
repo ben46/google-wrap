@@ -24,7 +24,7 @@
         newlink.setAttribute('href', a.getAttribute('href'));
         newlink.innerHTML = ' 原链接';
         newlink.target = '_blank';
-        newlink.style.cssText = 'margin-left: 5px; color : #333; font-size : 14px; font-weight : bold';
-        a.parentNode.appendChild(newlink);
+        newlink.style.cssText = 'margin-right: 5px; color : #fff; font-size : 14px; font-weight : bold; padding: 0 4px; border-radius : 4px; background-color : #333';
+        a.parentNode.insertBefore(newlink, a);
     }
 })()
