@@ -31,7 +31,6 @@
             loop();
             function loop () {
                 var box = document.getElementById("content_left");
-                console.log(box);
                 count --;
                 if(! box){
                     if(count > 0){
@@ -48,23 +47,25 @@
                 var div = box.childNodes;
                 var removeArr = [];
                 for(var i = 0; i < div.length; i++){
-                    var className = div[i].getAttribute("class");
-                    if(className){
-                        var classSp = className.split('result');
-                        if(classSp.length < 2){
-                            removeArr.push(div[i]);
-                        }
-                    }
-
-                    var a = div[i].getElementsByClassName("m");
-
-                    if(a.length > 0)
-                    {
-                        for(var k = 0; k < a.length; k++){
-                            var text = a[k].innerHTML;
-                            var textSp = text.split("推广");
-                            if(textSp.length > 1){
+                    if(div[i].nodeName != '#text'){
+                        var className = div[i].getAttribute("class");
+                        if(className){
+                            var classSp = className.split('result');
+                            if(classSp.length < 2){
                                 removeArr.push(div[i]);
+                            }
+                        }
+
+                        var a = div[i].getElementsByClassName("m");
+
+                        if(a.length > 0)
+                        {
+                            for(var k = 0; k < a.length; k++){
+                                var text = a[k].innerHTML;
+                                var textSp = text.split("推广");
+                                if(textSp.length > 1){
+                                    removeArr.push(div[i]);
+                                }
                             }
                         }
                     }
