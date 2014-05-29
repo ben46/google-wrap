@@ -10,20 +10,47 @@
 
     switch (domain){
         case "google" :
-            var search = document.getElementById('rso');
+            window.onload = function () {
+                var count = 50;
+                loop_google();
 
-            if (!search) {
-                return
-            }
-            var entries = search.getElementsByTagName('h3');
-            var len = entries.length;
+                function loop_google ()
+                {
+                    var search = document.getElementById('center_col');
+                    console.log(search);
+                    count --;
+                    if(! search){
+                        if(count > 0){
+                            setTimeout(function () {
+                                loop_google()
+                            }, 200);
+                            return;
+                        }
+                        else{
+                            return;
+                        }
+                    }
+                    else{
+                        setTimeout(function () {
+                            var entries = search.getElementsByTagName('h3');
 
-            for (var i = 0; i < len; i++) {
-                var e = entries[i];
-                var anchors = e.getElementsByTagName('a');
-                anchors = Array.prototype.slice.call(anchors, 0);
-                anchors.forEach(strip);
-            }
+                            var len = entries.length;
+                            console.log(len);
+
+                            for (var i = 0; i < len; i++) {
+                                var className = entries[i].getAttribute("class");
+                                if(className)
+                                {
+                                    var e = entries[i];
+                                    var anchors = e.getElementsByTagName('a');
+                                    anchors = Array.prototype.slice.call(anchors, 0);
+                                    anchors.forEach(strip);
+                                }
+                            }
+                        }, 1000);
+                    }
+                }
+            };
             break;
 
         case "baidu" :
